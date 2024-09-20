@@ -32,10 +32,7 @@ func mkCert(cmd *cobra.Command, _ []string) error {
 		return fmt.Errorf("failed to get namespace flag: %w", err)
 	}
 
-	flags := utils.GetClusterStatusFlags()
-	if !flags.SetupComplete {
-		return fmt.Errorf("there doesn't appear to be an active k3d cluster")
-	}
+
 	config := k3d.GetConfig(
 		viper.GetString("flags.cluster-name"),
 		flags.GitProvider,
